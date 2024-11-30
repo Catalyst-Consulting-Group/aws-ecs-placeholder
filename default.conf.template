@@ -1,0 +1,12 @@
+server {
+    listen ${NGINX_PORT};
+
+    location / {
+        try_files /index.html /index.html;
+    }
+
+    location = ${HEALTH_PATH} {
+        add_header Content-Type text/plain;
+        return 200 'Healthy';
+    }
+}
